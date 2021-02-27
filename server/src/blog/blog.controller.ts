@@ -7,7 +7,6 @@ import {
   NotFoundException,
   Param,
   Post,
-  Put,
   Query,
   Res
 } from '@nestjs/common'
@@ -39,21 +38,6 @@ export class BlogController {
     return res.status(HttpStatus.OK).json({
       status: 'created',
       post: newPost
-    })
-  }
-
-  @Put('edit')
-  async editPost(
-    @Res() res,
-    @Query('id', new ValidateId()) id,
-    @Body() createPostDTO: CreatePostDTO
-  ) {
-    const editedPost = await this.blogService.editPost(id, createPostDTO)
-
-    if (!editedPost) throw new NotFoundException('Post not found')
-    return res.status(HttpStatus.OK).json({
-      status: 'updated',
-      post: editedPost
     })
   }
 

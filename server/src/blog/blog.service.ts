@@ -21,12 +21,6 @@ export class BlogService {
     return newPost.save()
   }
 
-  async editPost(ID: string, createPostDTO: CreatePostDTO): Promise<Post> {
-    return this.postModel.findByIdAndUpdate(ID, createPostDTO, {
-      new: true
-    })
-  }
-
   async deletePost(ID: string): Promise<any> {
     return this.postModel.findByIdAndRemove(ID)
   }
